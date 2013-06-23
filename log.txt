@@ -1,0 +1,162 @@
+==========
+7/3/11
+-- Fixed Start Screen bug
+	Start screen never showed other than a brief flicker.
+	Fixed so the start menu appears and functions as it is
+	supposed to.
+
+==========
+12/29/10
+-- Added Scoring
+	Whenever the player's missile strikes the enemy ship
+	the player scores one point. Possible modifications
+	are to come.
+==========
+12/28/10
+-- Added Score Amount
+	The game now starts off with a score of 000. The 
+	score is displayed 2 slots below the text 'SCORE'.
+-- Added Score Update Subroutine
+	Whenever the score is updated, the subroutine
+	SR_UpdateScore can be called to update the score
+	that is dispalyed on the screen.
+==========
+12/27/10
+-- Added Rounds
+	The enemy fighter can take 5 hits. When the 5 hits
+	are over, the round ends and preparations for the
+	new round are made.
+==========
+12/14/2010
+-- Modified Paused
+	The player's missile will no longer move while
+	the game is paused.
+-- Added Enemy Health
+	The enemy starts off with 5 hp and loses 1 hp with
+	each collision. Currently does nothing but decrease
+	the enemy health.
+==========
+12/13/2010
+-- Added Title Screen
+	Added the space for a title screen. It currently only has
+	'PRESS START'. Title will commence when a title is chosen.
+==========
+12/12/2010
+-- Updated Threat Assesment
+	Threat assesment is a little less cautious. The missile
+	can now travel farther without triggering the threat levels.
+	This makes it easier to hit the enemy but still allows for dodging
+	and tactical assesment of the situtation.
+-- Added Missile Limits
+	Players can now only fire designated amount of missiles per round.
+	1 EMP, 2 Trackers. Infinite missiles can always be fired.
+==========
+12/10/2010
+-- Improved Enemy Missile Collision
+	Misiles will not accurately hit the ship instead of missing
+	the side.
+-- Added Amount of Lives
+	The game now dispalys the amount of lives the user currently
+	has. It starts off at 3.
+-- Added Lives Updater
+	Whenever the player is struck by a missile, the lives will need
+	to be updated. SR_UpdateLives is the subroutine to do this.
+=========
+12/8/2010
+-- Added Enemy Missile Hits
+	When a missile is fired at the enemy ship and the missile
+	strikes on the ship, a hit is detected. At this point the missile
+	stops moving, the tile is set to blank, and the threat level is reset
+	back to 0.
+=========
+12/7/2010
+-- Added Threat Levels
+	The current threat level for the enemy ship is calculated 
+	based on the location of the enemy missile. 0 indicates
+	no missiles firing, 1 indicates missile fired, 2 indicates
+	missile moving in (mid-range) and 3 indicates a missile hit
+	is close.
+-- Added Basic AI
+	The AI assesses the threat level and the location of the incoming missiles
+	and moves accordingly either left or right will still respecting the bounds
+	set by the 'walls'.
+=========
+12/6/2010
+-- Added Wall Collision
+	Checks the ship's position. If the user is past the extreme
+	boundary, the ship is reset to this boundary. Currently only
+	supports the left and right walls as well as the bottom edge
+	and sets the top limit near the bottom of the enemy ship.
+-- Added in Select Limitations
+	The player cannot change the missile ID during a missile launch.
+	If a player were able to do so, he or she could change the effects
+	of the missile mid-flight. Also, the player may no longer switch
+	missiles while paused. This reserves the Select button's use for
+	a possible paused menu.
+=========
+12/5/2010
+-- Added 'PAUSED' text
+	Whenever the game is paused, the text 'PAUSED'
+	will be displayed. When the game is unpaused, the
+	text is removed.
+-- Altered Select & Start button recognition
+	Now the button reacts instantly to a press instead
+	of waiting until the user releases the button. Player
+	must release the button and press it again for the
+	action to repeat.
+-- Allow Vertical Movement
+	Player can now move ship up and own
+	by presseing the respective buttons.
+	Updated the missile code to get the
+	vertical position of the ship. Also
+	updated missile code to set limit.
+	Missile's vertical position can not be
+	less than 8.
+-- Added Missile Numbers
+	Numbers displaying the current number of missiles sits
+	above the respective missiles now. They are part of the
+	background and will need to be changed based on missile
+	firings.
+=========
+12/4/2010
+-- Added in game text
+	'SCORE' and 'LIVES' added
+	Loads after 'LoadsBackground:'
+	Data after 'Background:'
+-- Moved around enemy position and 'walls'
+	Enemy now closer to top of screen
+	'walls' now closer together (less playing space)
+-- Purified NMI
+	No longer have player ship/missile movement update
+	login within NMI. Have them within Subroutine area
+-- Missile Sprite Disappears
+	Now when missile moves out of range, it will
+	change the missile's tile number to a blank tile
+-- Added in missile toggle
+	When the player pressed 'Select' the next missile
+	is selected but only when a missile is not firing
+	Whenever the missile ID equals 3, it is time to go
+	back to the standard missile (0)
+-- Added Missile Selector Icons
+	Now when the player selects a missile
+	the current missile will be underlined
+	by a small icon.
+-- Added missile movement for 'Tracker Missile'
+	Missile now moves based on the location of the enemy
+	ship. If it is past it, the missile will either increment
+	or decrement to get within the ship's boundaries.
+-- Added EMP missile function
+	Missile detonation is based on a value that increments
+	with each NMI and it then exclusive or'd a few times
+	I need a better random generator but this works fairly
+	well for now.
+=========
+12/3/2010
+-- Added in basic missile shooting
+	One missile may be shot at any given time
+	Missile may be fired when it detonates (via collision)
+	or passes by the enemy.
+-- Added in basic background components
+	Set the insertion of the background/attribute table
+	Has sidebars that should act as limiters
+=========
